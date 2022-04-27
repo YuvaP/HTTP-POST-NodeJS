@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Use of HTTP POST request method</title>
+    </head>
+    <body>
+        <p><h3><span style="color:red">Yuva App that uses HTTP POST request method through fetch()</span></h3></p>
+        <p><h4><i>How does this app work? <br>
+        <ul>
+            <li>Client sends data to the Node Server and the server sends the response.</li>
+            <li>Use of Express as a web framework.</li>
+            <li>Using fetch(), the client sends "First Name" and "Last Name" through HTTP POST request. </li>
+            <li>Once the server receives the data, it sends the Acknowledgement.</li>
+        </ul>
+        </i></h4></p>
+        
+        <p>
+            <h3 style="text-decoration: underline; color:blue;">Message sent from Client to Server using HTTP POST request:</h3>
+            <b>First Name:</b><span id="fname"></span><br>
+            <b>Last Name:</b><span id="lname"></span><br><br>
+            <h3 style="text-decoration: underline; color: green;">Acknowledgement from the Node Server:</h3>
+            <span id="serverMessage"></span>
+        </p>
+
+        <script>
+
+        async function myFunction(){  
+        let fullName = '{"firstName":"John","lastName":"Doe"}';
+        //console.log(fullName);
+        let myData = JSON.parse(fullName);
+        //console.log(myData);
+        let {firstName, lastName}=myData;
+        //console.log(firstName, lastName);
+        options={
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(myData)
+        };
+        
+        const fetch_response= await fetch('/api', options)
+        console.log(fetch_response);
+        const json_data=await fetch_response.text();
+        console.log(json_data)
+          //let serverResponse=response.json();
+          //let serverResponse=response.text();
+        
+        document.getElementById('fname').textContent=firstName;
+        document.getElementById('lname').textContent=lastName;
+        document.getElementById('serverMessage').textContent=json_data;
+    }
+
+    myFunction();
+        </script>
+    </body>
+</html>

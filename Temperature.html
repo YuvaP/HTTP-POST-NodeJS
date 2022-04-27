@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fahrenheit to Celsius Converter </title>
+<style>
+    body {
+    background-color: antiquewhite;font-weight: bold; padding-top: 5em;
+    }
+</style>
+
+</head>
+<body>
+      
+    <script>
+    var fTemperature;
+    fTemperature = parseInt(window.prompt ("Please enter the Fahrenheit Temperature ")); 
+    if (fTemperature)
+    {
+    var cTemperature = (fTemperature-32) * 5/9 ; 
+    cTemperature = cTemperature.toFixed(1) ;
+    fTemperature = fTemperature.toFixed(1) ;
+    var finalOutput = fTemperature + "F"  + " = " + cTemperature +"C"; 
+    document.write (finalOutput); 
+}
+    else
+    {
+    document.write("User Input Needed");
+    }
+
+    </script>
+
+
+</body>
+</html>
+
